@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/info/BaseResume::layout(~{::body})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${Title}"></title>
+
+</head>
+
+<body>
+    <div class="content">
+        <h1>
+            Let's start with your header
+        </h1>
+        <p>
+            Include your full name and at least one way for employers to reach you.
+        </p>
+        <br>
+        <br>
+        <form th:action="@{/user/save-personal-info}" th:object="${personal_info_object}" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label" for="firstName">
+                        FIRST NAME
+                    </label>
+                    <input class="form-control" name="firstName" id="firstName" th:value="${P_First_Name}" type="text"
+                        placeholder="Divya" value="Dummy_Data" required />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="surname">
+                        SURNAME
+                    </label>
+                    <input class="form-control" id="surname" name="surname" type="text" th:value="${P_Last_Name}"
+                        placeholder="Agarwal" value="Dummy_Data" required />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="city">
+                        CITY
+                    </label>
+                    <input class="form-control" id="city" name="City" type="text"
+                        th:value="${personal_info_object.City}" placeholder="New Delhi" value="Dummy_Data" required/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="email">
+                        EMAIL*
+                    </label>
+                    <input class="form-control" id="email" name="E_mail" type="email"
+                        th:value="${personal_info_object.E_mail}" placeholder="d.agarwal@sample.in" value="Dummy_Data" required/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="phone">
+                        PHONE
+                    </label>
+                    <input class="form-control" id="phone" name="Phone_Number" type="number"
+                        th:value="${personal_info_object.Phone_Number}" placeholder="+91 11123 45677" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label" for="LinkedIn">
+                        Linkedin ID
+                    </label>
+                    <input class="form-control" id="LinkedIn" name="LinkedIn_ID" type="text"
+                        th:value="${personal_info_object.LinkedIn_ID}"
+                        placeholder="https://www.linkedin.com/company/microsoft" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="GitHub_ID">
+                        GitHub ID
+                    </label>
+                    <input class="form-control" id="GitHub_ID" name="GitHub_ID" type="text"
+                        th:value="${personal_info_object.GitHub_ID}" placeholder="https://github.com/johndoe123" />
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-back" type="button" id="backButton" onclick="myFunction()">
+                    Back
+                </button>
+                <input type="submit" value="Continue" class="btn btn-continue">
+            </div>
+        </form>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:if="${personal_info_saved}">
+        Swal.fire({
+            title: "Success",
+            text: "Data Uploaded Successfuly!",
+            icon: "success",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/user/educational-info";
+            }
+        });
+    </script>
+    <script>
+        function myFunction() {
+                window.location.href = "/user/index";
+            }
+    </script>
+</body>
+
+</html>

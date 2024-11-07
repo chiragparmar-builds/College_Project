@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/admin_base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Page</title>
+</head>
+
+<body>
+    <section>
+        <h1>Demo Page</h1>
+        <a th:href="@{/admin/index}">Index Page</a>
+        <br>
+        <br>
+        <a th:href="@{/logout}">logout</a>
+    </section>
+</body>
+
+</html>

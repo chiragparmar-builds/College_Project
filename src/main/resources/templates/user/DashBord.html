@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/UserBase::layout(~{::body})}">
+
+<!-- <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <center>
+            <h1>This is DashBord</h1>
+            <H1>hello every one</H1>
+            <br><br>
+
+            <h1>User Name = <span th:text="${user.name}"></span></h1>
+            <h1>User email = <span th:text="${user.email}"></span></h1>
+            <h1>About User = <span th:text="${user.about}"></span></h1>
+            <h1>User password = <span th:text="${user.password}"></span></h1>
+        </center>
+    </section>
+</body>
+
+</html> -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Sidebar Menu</title>
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'>
+    <link rel='stylesheet'
+        href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap'>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cardstyle.css}">
+
+</head>
+
+<body>
+
+    <!-- partial:index.partial.html -->
+    <!-- <nav class="sidebar close"> -->
+    <!-- <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="https://drive.google.com/uc?export=view&id=1ETZYgPpWbbBtpJnhi42_IR3vOwSOpR4z" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name" th:text="${user.name}">Stella Army </span>
+                    <span class="profession">Web developer</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Revenue</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Notifications</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-heart icon'></i>
+                            <span class="text nav-text">Likes</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-wallet icon'></i>
+                            <span class="text nav-text">Wallets</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a th:href="@{/logout}">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+
+            </div>
+        </div>
+
+    </nav> -->
+
+    <section class="home">
+        <div class="text">Dashboard</div>
+        <!-- <form action=""> -->
+        <div class="card-wrap">
+            <div class="card-header one">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="card-content">
+                <h1 class="card-title">Template 1</h1>
+                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <!-- <button class="card-btn one">code</button> -->
+                <input type="submit" class="card-btn one" value="Form 1" onclick="showSweetAlert()">
+                <input type="hidden" id="imageUrl"  th:src="@{/image/Resume_1.jpg}">
+                <!-- <button  onclick="showSweetAlert()">Hekko</button> -->
+            </div>
+        </div>
+        <!-- </form> -->
+        <div class="card-wrap">
+            <div class="card-header two">
+                <i class="fab fa-css3-alt"></i>
+            </div>
+            <div class="card-content">
+                <h1 class="card-title">Template 2</h1>
+                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <!-- <button class="card-btn two">css3</button> -->
+                <input type="submit" class="card-btn two" value="Form 2">
+            </div>
+        </div>
+        <div class="card-wrap">
+            <div class="card-header three">
+                <i class="fab fa-html5"></i>
+            </div>
+            <div class="card-content">
+                <h1 class="card-title">Template 3</h1>
+                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <!-- <button class="card-btn three">html5</button> -->
+                <input type="submit" class="card-btn three" value="Form 3">
+            </div>
+        </div>
+        <div class="card-wrap">
+            <div class="card-header four">
+                <i class="fab fa-js-square"></i>
+            </div>
+            <div class="card-content">
+                <h1 class="card-title">Template 4</h1>
+                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <!-- <button class="card-btn four">js</button> -->
+                <input type="submit" class="card-btn four" value="Form 2">
+            </div>
+        </div>
+    </section>
+    <!-- partial -->
+    <script th:src="@{/js/script.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script>
+        function showSweetAlert() {
+            const imageUrl = document.getElementById('imageUrl').src;
+                Swal.fire({
+                    // title: 'Are you sure?',
+                    // text: "You won't be able to revert this!",
+                    // icon: 'warning',
+                    imageUrl,
+                    showCancelButton: true,
+                    confirmButtonColor:'#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continue',
+                    imageHeight: 500,
+                    imageWidth:450,
+                    imageAlt: "A tall image"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/user/personal-info";
+                    }
+                });
+            }
+    </script>
+</body>
+
+</html>

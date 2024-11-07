@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::body})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <section style="margin-bottom: 165px; margin-top: 50px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="my-card">
+                        <center>
+                            <h1> Register here!!</h1>
+                        </center>
+                        <form th:action="@{/do_register}" method="post" th:object="${user}">
+                            <div class="form-group">
+                                <label for="validationServer03">Enter your Name</label>
+                                <input type="text" class="form-control"
+                                    th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+                                    placeholder="Enter full Name" required name="name" th:value="${user.name}" id="nameInput">
+                                <div class="invalid-feedback" id="result" th:each="e : ${#fields.errors('name')}" th:text="${e}">
+                                </div>
+                                <!-- <p th:each="e : ${#fields.errors('name')}" th:text="${e}"></p> -->
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Enter your Email-id</label>
+                                <input type="email" th:value="${user.email}" class="form-control"
+                                    id="formGroupExampleInput2" name="email" placeholder="Email-id" required
+                                    th:classappend="${#fields.hasErrors('email')?'is-invalid':''}">
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('email')}" th:text="${e}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Select Your Gender</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Gender"
+                                        id="inlineRadio1" value="Male" required>
+                                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Gender"
+                                        id="inlineRadio2" value="Female" required>
+                                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Gender"
+                                        id="inlineRadio3" value="Other" required>
+                                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Select Your Date Of Birth</label>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="date" th:value="${user.dob}" class="form-control" name="dob" placeholder="First name" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Create Password</label>
+                                <input type="password" th:value="${user.password}" class="form-control" name="password"
+                                    th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
+                                    placeholder="Create Password" required>
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('password')}"
+                                    th:text="${e}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Confirm Password</label>
+                                <input type="password" class="form-control" name="Confirm_Password"
+                                    th:classappend="${Confirm_Password_Message} ?'is-invalid':''" placeholder="Confirm Password" required>
+                                <div class="invalid-feedback" th:if="${Confirm_Password_Message}">
+                                    <p>Password not Match</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea class="form-control" th:text="${user.about}" cols="30" rows="7" name="about"
+                                    placeholder="Enter Something about your Self" required></textarea>
+                            </div>
+                            <div class="bd-example">
+                                <center>
+                                    <button type="submit" class="btn btn-primary me-3">Submit</button>
+                                    <button type="reset" class="btn btn-warning" onclick="myFunction()">Reset</button>
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:if="${successMessage}">
+        Swal.fire({
+            title: "Success",
+            text: "Account created successfully!",
+            icon: "success",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/SingUp";
+            }
+        });
+    </script>
+    <script th:if="${errorMessage}">
+        Swal.fire({
+            title: "Oops",
+            text: "User Already Exists",
+            icon: "warning",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/SingUp";
+            }
+        });
+    </script>
+    <script>
+        function myFunction() {
+            window.location.href = "/SingUp";
+        }
+    </script>
+</body>
+
+</html>

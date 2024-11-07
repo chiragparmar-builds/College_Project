@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/admin_base::layout(~{::body})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Page</title>
+</head>
+
+<body>
+    <section style="padding: 30px;">
+        <h1 class="text-center">See User List Here</h1>
+        <!-- <a th:href="@{/admin/index}">Index Page</a>
+        <br>
+        <br>
+        <a th:href="@{/logout}">logout</a> -->
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td>
+                    <h5>Total Number Of Users =</h5>
+                </td>
+                <td><h5 th:text="${Total_Users}"></h5></td>
+            </tr>
+        </table>
+        <!-- <h3 style="float: left;">Total Number Of Users = <p th:text="${Total_Users}"></p></h3> -->
+
+        <br>
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="a : ${users}">
+                    <th scope="row" th:text="${a.id}">1</th>
+                    <td class="col-md-3" th:text="${a.name}"></td>
+                    <td class="col-md-4" th:text="${a.email}"></td>
+                    <td class="col-md-3" th:text="${a.role eq 'ROLE_ADMIN' ? 'ADMIN' : 'USER'}"></td>
+                    <td class="col-md-1">
+                    
+                        <form th:action="@{/admin/make-user-dead}" method="post">
+                            <input type="hidden" th:value="${a.id}" name="a_id">
+                            <input type="submit" value="Remove User" id="CK">
+                        </form>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:if="${User_Deleted}">
+
+        Swal.fire({
+            title: "Done",
+            text: "User Deleted Successfully",
+            icon: "success",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/admin/user-list";
+            }
+        });
+    </script>
+</body>
+
+</html>

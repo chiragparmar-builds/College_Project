@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/admin_style.css}">
+    <title th:text="${Title}">CodePen - Sidebar Menu</title>
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="sidebar" id="profile">
+            <button class="btn btn-secondary toggle-btn" onclick="toggleProfile()">
+                <i class="fas fa-arrow-left">
+                </i>
+            </button>
+            <img alt="Admin profile picture" height="100"
+                src="https://storage.googleapis.com/a1aa/image/LIlyWgWW5qrtBtl500xteQEGN2yxrMjOwNiDR0FtWMtFddzJA.jpg"
+                width="100" />
+            <h4 th:text="${admin.name}">
+                Admin Name
+            </h4>
+            <h6 th:text="${admin.role eq 'ROLE_ADMIN' ? 'ADMIN' : ''}">
+                Admin Role
+            </h6>
+            <br>
+            <a th:href="@{/admin/index}">
+                Dashboard
+            </a>
+            <a href="#">
+                Resume Management
+            </a>
+            <a th:href="@{/admin/user-list}">
+                User Management
+            </a>
+            <a th:href="@{/admin/show-messages}">
+                Messages
+            </a>
+            <a href="#">
+                Settings
+            </a>
+            <button class="btn logout-btn">
+                <!-- <i class="fas fa-sign-out-alt"></i> -->
+                 <a th:href="@{/logout}">Logout
+                    <i class="fas fa-sign-out-alt"></i>
+                 </a>
+                <!-- <i class="fas fa-sign-out-alt"></i> -->
+            </button>
+        </div>
+        <div class="main-content flex-grow-1 p-0">
+            <div class="header ">
+                <div>
+                    <button class="btn " id="toggleBtn" style="display: none;margin-bottom: 10px;"
+                        onclick="toggleProfile()">
+                        <i class="fas fa-arrow-right">
+                        </i>
+                    </button>
+                    <h2 class="d-inline">
+                        Master Admin
+                    </h2>
+                </div>
+
+                <div class="icons">
+
+                    <button class="btn">
+                        <a th:href="@{/logout}">Logout
+                        <i class="fas fa-sign-out-alt">
+                        </i>
+                        </a>
+                    </button>
+                    <button class="btn theme-btn" onclick="toggleTheme()">
+                        <i class="fas fa-moon">
+                        </i>
+                    </button>
+                </div>
+            </div>
+            <div th:replace="${content}"></div>
+            <!-- <h3 class="mt-3 p-2">
+            Dashboard Control panel
+        </h3>
+        <div class="d-flex justify-content-around px-4">
+            <div class="card bg-primary  ">
+                <div class="d-flex justify-content-between align-items-center">
+                    <i class="fas fa-file-alt">
+                    </i>
+                    <div>
+                        <h4>
+                            4
+                        </h4>
+                        <p>
+                            Total Resume
+                        </p>
+                    </div>
+                </div>
+                <div class="more-info">
+                    <a href="#">
+                        More info
+                    </a>
+                    <i class="fas fa-arrow-circle-right">
+                    </i>
+                </div>
+            </div>
+            <div class="card bg-warning ">
+                <div class="d-flex justify-content-between align-items-center">
+                    <i class="fas fa-user">
+                    </i>
+                    <div>
+                        <h4>
+                            50
+                        </h4>
+                        <p>
+                            Total User
+                        </p>
+                    </div>
+                </div>
+                <div class="more-info">
+                    <a href="#">
+                        More info
+                    </a>
+                    <i class="fas fa-arrow-circle-right">
+                    </i>
+                </div>
+            </div>
+
+            <div class="card bg-success  ">
+                <div class="d-flex justify-content-between align-items-center">
+                    <i class="fas fa-envelope">
+                    </i>
+                    <div>
+                        <h4>
+                            65
+                        </h4>
+                        <p>
+                            Total Enquiries
+                        </p>
+                    </div>
+                </div>
+                <div class="more-info">
+                    <a href="#">
+                        More info
+                    </a>
+                    <i class="fas fa-arrow-circle-right">
+                    </i>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    </div>
+    <!-- <div th:replace="${content}"></div> -->
+    <script th:src="@{/js/admin_js.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
