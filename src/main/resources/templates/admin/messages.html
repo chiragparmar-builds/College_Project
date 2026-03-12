@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/admin_base::layout(~{::body})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Page</title>
+</head>
+
+<body>
+    <section style="padding: 30px;">
+        <h1 class="text-center">See Message Here</h1>
+        <!-- <div class="card-body">
+            <h2 class="text-center">Message Page</h2>
+        </div> -->
+        <!-- <a th:href="@{/admin/index}">Index Page</a>
+        <br>
+        <br>
+        <a th:href="@{/logout}">logout</a> -->
+        <br>
+        <br>
+        <table class="table text-center">
+
+            <thead>
+                <tr>
+                    <!-- <th scope="col">No</th> -->
+                    <th scope="col">Name</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${contact}">
+                    <!-- <th class="col-md-3" scope="row" th:text="${c.cid}">1</th> -->
+                    <td class="col-md-3" th:text="${c.name}"></td>
+                    <td class="col-md-4" th:text="${c.email}"></td>
+                    <td class="col-md-3" th:text="${c.phone}"></td>
+                    <!-- <td class="col-md-1" th:text="${c.message}"></td> -->
+                    <td class="col-md-1"> 
+
+                        <form th:action="@{/admin/see-message}" method="post">
+                            <input type="hidden" th:value="${c.cid}" name="m_id">
+                            <input type="submit" value="Check" onclick="myFunction()" id="CK">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:if="${message}">
+    
+        Swal.fire({
+            title: "[[${message}]]",
+            // text: "That thing is still around?",
+            // icon: "question"
+            allowOutsideClick: false
+            // "[[${message}]]"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/admin/show-messages";
+            }
+        });
+    </script>
+</body>
+
+</html>

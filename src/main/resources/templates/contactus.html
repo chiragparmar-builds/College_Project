@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::body})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+
+        <!-- <h1>This is Contact-Us Page</h1> -->
+        <div class="my-contact-container">
+            <div class="my-contact-form">
+                <h4>Contact Us</h4>
+                <form th:action="@{/do_message}" method="post" th:object="${contact}">
+
+                    <div class="form-group">
+                    <label for="contactName">Name:</label>
+                    <input type="text" id="contactName" name="name"
+                    class="form-control"
+                    th:value="${contact.name}" 
+                    th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+                    required>
+                    <div class="invalid-feedback" id="result" th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email"
+                    class="form-control"
+                    th:value="${contact.email}" 
+                    th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+                    required>
+                    <div class="invalid-feedback" id="result" th:each="e : ${#fields.errors('email')}" th:text="${e}"></div>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="Phone">Phone:</label>
+                    <input type="number" id="Phone" name="Phone"
+                    class="form-control"
+                    th:value="${contact.phone}" 
+                    th:classappend="${#fields.hasErrors('phone')?'is-invalid':''}"
+                    required>
+                    <div class="invalid-feedback" id="result" th:each="e : ${#fields.errors('phone')}" th:text="${e}"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" cols="50" 
+                    class="form-control"
+                    th:text="${contact.message}"
+                    required></textarea>
+                    </div>
+
+                    <div class="bd-example">
+                    <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+            <div class="my-map-container">
+                <h4>Our Location</h4>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.197195238243!2d72.37324807487789!3d23.11303147742989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395976398552d5d7%3A0x395976398552d5d7!2sKadi%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sin!4v1695477989193!5m2!1sen!2sin"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:if="${message_from_user}">
+        Swal.fire({
+            title: "Success",
+            text: "Message sent successfully!",
+            icon: "success",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/ContactUs";
+            }
+        });
+    </script>
+</body>
+
+</html>

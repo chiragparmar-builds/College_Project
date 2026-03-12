@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${Title}">Document</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/resume.css}">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="icon">
+            <i class="fas fa-file-alt">
+            </i>
+        </div>
+        <div class="step" th:classappend="${Page_No_1}?'active':''">
+            <a th:href="@{/user/personal-info}">1</a>
+        </div>
+        <div class="step" th:classappend="${Page_No_2}?'active':''">
+            <a th:href="@{/user/educational-info}">2</a>
+        </div>
+        <div class="step" th:classappend="${Page_No_3}?'active':''">
+            <a th:href="@{/user/project-info}">3</a>
+        </div>
+        <div class="step" th:classappend="${Page_No_4}?'active':''">
+            <a th:href="@{/user/programming-info}">4</a>
+        </div>
+        <div class="step" th:classappend="${Page_No_5}?'active':''">
+            <a th:href="@{/user/language-info}">5</a>
+        </div>
+        <!-- <div class="step" th:classappend="${Page_No_6}?'active':''">
+            <a th:href="@{/user/personal-info}">6</a>
+        </div> -->
+    </div>
+
+    <div th:replace="${content}"></div>
+</body>
+
+</html>
