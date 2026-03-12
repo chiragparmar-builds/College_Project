@@ -334,7 +334,7 @@ public class UserController {
 
 
     @RequestMapping("/save-programming-info")
-    public String requestMethodName(@ModelAttribute("programming_info_object") Programing_Language_info programing_Language_info, Model m) {
+    public String requestMethodName(@ModelAttribute("programming_info_object") Programing_Language_info programing_Language_info, RedirectAttributes m) {
 
 
         this.programing_Language_infos = programing_Language_info;
@@ -343,9 +343,9 @@ public class UserController {
         r.setPrograming_Language_infos(List.of(programing_Language_infos));
         programing_Language_info.setResume_id(r);
         // programing_Language_info = new Programing_Language_info();
-        m.addAttribute("programming_info_object", this.programing_Language_infos);
-        m.addAttribute("Programming_info_saved", true);
-        return "user/info/programming_info";
+        m.addFlashAttribute("programming_info_object", this.programing_Language_infos);
+        m.addFlashAttribute("Programming_info_saved", true);
+        return "redirect:/user/programming-info";
     }
 
     @RequestMapping("/languages-list-to-value")
@@ -360,14 +360,26 @@ public class UserController {
         return "user/info/language_info";
     }
 
+    // 1. This method handles the POST request from your form
     @RequestMapping("/save-speaking-value")
-    public String save_speaking_value(Model m) {
+    public String save_speaking_value() {
+        // Logic to update your lists or objects goes here
+        // ...
+
+        // REDIRECT to the GET mapping instead of returning the view name
+        return "redirect:/user/check-info";
+    }
+
+    // 2. This new GET method displays the page
+    @GetMapping("/check-info")
+    public String showCheckInfoPage(Model m) {
         m.addAttribute("personal_info_object", this.p_f);
         m.addAttribute("User_education_list", this.educaion_infoList);
         m.addAttribute("User_project_list", this.project_infosList);
         m.addAttribute("User_programming_list", this.programing_Language_infos);
         m.addAttribute("User_spe_lan", this.speaking_Languages_info);
-        return "user/info/check_info";
+
+        return "user/info/check_info"; // Returns the HTML view
     }
 
     @RequestMapping("/save-in-database")
