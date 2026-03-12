@@ -58,7 +58,7 @@ public class HomeController {
     public String SingUp(Model m) {
         m.addAttribute("Title", "SingUp - This is SingUp page");
         m.addAttribute("user", new User());
-        return "singUp";
+        return "singup";
     }
 
     @RequestMapping("/Login")
