@@ -25,22 +25,23 @@
                 </div>
             </form>
         </div>
-    </section>
-    <script th:if="${Loginfail}">
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof Swal !== 'undefined') {
+        <script th:if="${Loginfail}">
+            document.addEventListener("DOMContentLoaded", function () {
                 Swal.fire({
-                    title: "Oops",
-                    text: "Wrong email or password.",
                     icon: "error",
-                    allowOutsideClick: false
-                }).then(function(result) {
+                    title: "Login Failed",
+                    text: "Wrong email or password",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    confirmButtonText: "OK"
+                }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = "/Login";
                     }
                 });
-            }
-        });
-    </script>
+            });
+        </script>
+    </section>
+
 </body>
 </html>

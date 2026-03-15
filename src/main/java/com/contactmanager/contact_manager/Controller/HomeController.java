@@ -89,7 +89,7 @@ public class HomeController {
         }
 
         if (userRepository.getUserByUserName(user.getEmail()) != null) {
-            model.addAttribute("errorMessage", "This E-mail has account try to login");
+            model.addAttribute("errorMessage", true);
             return "singup";
         }
 
@@ -100,14 +100,15 @@ public class HomeController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User result = userRepository.save(user);
         model.addAttribute("user", result);
-        model.addAttribute("successMessage", "Account created successfully!");
+        model.addAttribute("successMessage", true);
         return "singup";
     }
 
 
     @RequestMapping("/Login_Fail")
     public String Login_Fail(Model m) {
-        m.addAttribute("Loginfail", "Wrong User Id Password");
+        m.addAttribute("Loginfail", true);
+        m.addAttribute("message", "Wrong User Id or Password");
         return "login";
     }
 

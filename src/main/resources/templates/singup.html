@@ -70,38 +70,37 @@
                 </form>
             </div>
         </div>
-    </section>
-    <script th:if="${successMessage}">
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof Swal !== 'undefined') {
+        <!-- Success Alert -->
+        <script th:if="${successMessage}">
+            document.addEventListener("DOMContentLoaded", function () {
                 Swal.fire({
-                    title: "Success",
-                    text: "Account created successfully!",
                     icon: "success",
-                    allowOutsideClick: false
-                }).then(function(result) {
-                    if (result.isConfirmed) {
-                        window.location.href = "/SingUp";
-                    }
+                    title: "Account Created",
+                    text: "Your account has been created successfully!",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    confirmButtonText: "OK"
+                }).then(() => {
+                    window.location.href = "/Login";
                 });
-            }
-        });
-    </script>
-    <script th:if="${errorMessage}">
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof Swal !== 'undefined') {
+            });
+        </script>
+
+        <!-- Email Already Exists Alert -->
+        <script th:if="${errorMessage}">
+            document.addEventListener("DOMContentLoaded", function () {
                 Swal.fire({
-                    title: "Oops",
-                    text: "An account with this email already exists.",
                     icon: "warning",
-                    allowOutsideClick: false
-                }).then(function(result) {
-                    if (result.isConfirmed) {
-                        window.location.href = "/SingUp";
-                    }
+                    title: "Email Already Registered",
+                    text: "An account with this email already exists.",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    confirmButtonText: "OK"
+                }).then(() => {
+                    window.location.href = "/SingUp";
                 });
-            }
-        });
-    </script>
+            });
+        </script>
+    </section>
 </body>
 </html>

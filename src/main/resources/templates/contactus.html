@@ -53,22 +53,22 @@
                 </div>
             </div>
         </div>
+        <script th:if="${message_from_user}">
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: "Success",
+                        text: "Message sent successfully!",
+                        icon: "success",
+                        allowOutsideClick: false
+                    }).then(function(result) {
+                        if (result.isConfirmed) {
+                            window.location.href = "/ContactUs";
+                        }
+                    });
+                }
+            });
+        </script>
     </section>
-    <script th:if="${message_from_user}">
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    title: "Success",
-                    text: "Message sent successfully!",
-                    icon: "success",
-                    allowOutsideClick: false
-                }).then(function(result) {
-                    if (result.isConfirmed) {
-                        window.location.href = "/ContactUs";
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html>
