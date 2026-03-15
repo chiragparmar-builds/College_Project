@@ -1,89 +1,46 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::body})}">
-
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Signin Template · Bootstrap v5.0</title>
-
-    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/"> -->
-
-
-
-    <!-- Bootstrap core CSS -->
-    <!-- <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-    <!-- <link th:href="@{/css/signin.css}" rel="stylesheet"> --> -->
+    <title>Login - Resume Builder</title>
 </head>
-
-
 <body>
-    <section class="text-center">
-        <main class="form-signin">
-            <form th:action="@{/do_Login}" method="post">
-                <img class="mb-4" th:src="@{/image/user.png}" alt="" width="80" height="80">
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-                <div class="form-floating">
-                    <input type="email" name="username" class="form-control" id="floatingInput"
-                        placeholder="name@example.com" required>
+    <section class="theme-page theme-signin">
+        <div class="theme-card">
+            <img class="d-block mx-auto mb-3" th:src="@{/image/resumebuilder-logo.svg}" alt="" width="48" height="48">
+            <h1>Sign in</h1>
+            <form th:action="@{/do_Login}" method="post" class="theme-form">
+                <div class="form-floating form-group">
+                    <input type="email" name="username" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                     <label for="floatingInput">Email address</label>
                 </div>
-                <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="floatingPassword"
-                        placeholder="Password" required>
+                <div class="form-floating form-group">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
                 </div>
-
-                <div class="checkbox mb-3">
-                    <label>
-                        <!-- <input type="checkbox" value="remember-me" required> Remember me -->
-                    </label>
+                <button class="btn-theme-primary w-100 mb-3" type="submit">Sign in</button>
+                <div>
+                    <a th:href="@{/forgot_password}" class="btn-theme-secondary">Forgot password?</a>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-                <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->
-                <li class="nav mt-3">
-                    <a class="nav-link" th:href="@{/forgot_password}">Forgot Password</a>
-                </li>
             </form>
-        </main>
-
+        </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script th:if="${Loginfail}">
-        Swal.fire({
-            title: "Oops",
-            text: "Wrong User-Id Password",
-            icon: "error",
-            allowOutsideClick: false
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "/Login";
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: "Oops",
+                    text: "Wrong email or password.",
+                    icon: "error",
+                    allowOutsideClick: false
+                }).then(function(result) {
+                    if (result.isConfirmed) {
+                        window.location.href = "/Login";
+                    }
+                });
             }
         });
     </script>
 </body>
-
 </html>

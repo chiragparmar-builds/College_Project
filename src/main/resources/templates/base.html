@@ -4,7 +4,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -16,6 +16,9 @@
   <link rel="stylesheet" th:href="@{/css/fotterstyle.css}">
   <link rel="stylesheet" th:href="@{/css/contact.css}">
   <link rel="stylesheet" th:href="@{/css/carousel.css}">
+  <link rel="stylesheet" th:href="@{/css/navbar.css}">
+  <link rel="stylesheet" th:href="@{/css/theme-pages.css}">
+  <link rel="stylesheet" th:href="@{/css/home.css}">
 
   <style>
     .bd-placeholder-img {
@@ -36,6 +39,8 @@
 
   <!-- Custom styles for this template -->
   <link th:href="@{/css/signin.css}" rel="stylesheet">
+  <!-- SweetAlert2: load early so page scripts can use Swal -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script>
   <title th:text="${Title}">Base html</title>
 </head>
 
@@ -70,26 +75,37 @@
     </header>
   </div> -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">Resume Builder</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse h5" id="navbarNavAltMarkup" style="justify-content:center;">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" th:href="@{about}">About</a>
-      <a class="nav-item nav-link" th:href="@{ContactUs}">Contact-Us</a>
-      <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light site-nav">
+  <div class="site-nav__inner">
+    <a class="site-nav__logo" th:href="@{/}" aria-label="Resume Builder home">
+      <img th:src="@{/image/resumebuilder-logo.svg}" alt="" width="40" height="40" class="site-nav__logo-img">
+    </a>
+    <button class="navbar-toggler site-nav__toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse site-nav__collapse" id="navbarNav">
+      <ul class="navbar-nav site-nav__menu">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{about}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{ContactUs}">Contact Us</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav site-nav__auth">
+        <li class="nav-item">
+          <a class="nav-link site-nav__auth-link site-nav__auth-link--login" th:href="@{Login}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link site-nav__auth-link site-nav__auth-link--signup" th:href="@{SingUp}">Sign Up</a>
+        </li>
+      </ul>
     </div>
   </div>
-  <!-- <div class="navbar-nav col-md-0 text-end"> -->
-    <ul class="nav nav-pills col-12 col-md-auto h5 mb-3 justify-content-center mb-md-0">
-      <li><a th:href="@{Login}" class="nav-link px-3 active me-3" style="color: white;">Login</a></li>
-      <li><a th:href="@{SingUp}" class="nav-link px-3 active" style="color: white;">Sing-Up</a></li>
-    </ul>
-  <!-- </div> -->
 </nav>
 
 
@@ -97,64 +113,23 @@
 
   <div th:replace="${content}"></div>
 
-  <footer>
-    <div class="content">
-      <div class="top">
-        <div class="logo-details">
-          <i class="fab fa-slack"></i>
-          <span class="logo_name">CodeStella</span>
-        </div>
-        <div class="media-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <!-- <a href="#"><i class="fab fa-youtube"></i></a> -->
-        </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <a class="site-footer__logo" th:href="@{/}" aria-label="Resume Builder home">
+          <img th:src="@{/image/resumebuilder-logo.svg}" alt="" width="44" height="44" class="site-footer__logo-img">
+        </a>
+        <p class="site-footer__tagline">Build ATS-friendly resumes in minutes.</p>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a th:href="@{/}">Home</a>
+          <a th:href="@{about}">About Us</a>
+          <a th:href="@{ContactUs}">Contact Us</a>
+          <a th:href="@{Login}">Login</a>
+          <a th:href="@{SingUp}">Sign Up</a>
+        </nav>
       </div>
-      <div class="link-boxes">
-        <ul class="box">
-          <li class="link_name">Company</li>
-          <li><a th:href="@{/}">Home</a></li>
-          <li><a th:href="@{ContactUs}">Contact us</a></li>
-          <li><a th:href="@{about}">About us</a></li>
-          <li><a th:href="@{Login}">Get started</a></li>
-        </ul>
-        <ul class="box">
-          <li class="link_name">Services</li>
-          <li><a href="#">App design</a></li>
-          <li><a href="#">Web design</a></li>
-          <li><a href="#">Logo design</a></li>
-          <li><a href="#">Banner design</a></li>
-        </ul>
-        <ul class="box">
-          <li class="link_name">Account</li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">My account</a></li>
-          <li><a href="#">Prefrences</a></li>
-          <li><a href="#">Purchase</a></li>
-        </ul>
-        <ul class="box">
-          <li class="link_name">Courses</li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">Photography</a></li>
-          <li><a href="#">Photoshop</a></li>
-        </ul>
-        <ul class="box input-box">
-          <li class="link_name">Subscribe</li>
-          <li><input type="text" placeholder="Enter your email"></li>
-          <li><input type="button" value="Subscribe"></li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom-details">
-      <div class="bottom_text">
-        <span class="copyright_text">Copyright © 2024 <a href="#">CodingStella </a>All rights reserved</span>
-        <span class="policy_terms">
-          <a href="#">Privacy policy</a>
-          <a href="#">Terms & condition</a>
-        </span>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">Copyright © 2025 Resume Builder. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -176,6 +151,7 @@
       integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script th:src="@{/js/home.js}"></script>
 </body>
 
 </html>

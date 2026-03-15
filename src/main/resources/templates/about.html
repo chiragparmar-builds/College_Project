@@ -1,40 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About Us - Resume Builder</title>
 </head>
-
 <body>
-    
-        
-        <section class="container">
-            <br>
-            <!-- <h2 class="text-center">About Us</h2>
-            <p class="text-center">Your one-stop solution for creating professional resumes</p> -->
-        
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <img src="https://via.placeholder.com/500x300" class="img-fluid rounded-circle" alt="Team Image">
+    <section class="theme-page">
+        <header class="theme-page__hero">
+            <h1>About Us</h1>
+            <p>Your one-stop solution for creating professional, ATS-friendly resumes</p>
+        </header>
+        <div class="theme-page__inner">
+            <div class="theme-page__cards-row">
+                <div class="theme-card">
+                    <img th:src="@{/image/resume1.jpg}" alt="Resume Builder" class="img-fluid rounded" style="width:100%;">
                 </div>
-                <div class="col-md-6">
+                <div class="theme-card">
                     <h3>Our Mission</h3>
-                    <p>To empower individuals to create stunning resumes that showcase their unique skills and experiences.</p>
-        
+                    <p>To empower individuals to create professional resumes that showcase their skills and experience and get past applicant tracking systems.</p>
                     <h3>Our Vision</h3>
-                    <p>To be the leading online platform for resume building, helping people land their dream jobs.</p>
-        
+                    <p>To be the leading platform for resume building, helping people land their dream jobs with clean, ATS-friendly formats.</p>
                     <h3>Our Team</h3>
-                    <p>Our dedicated team of experts is passionate about helping you succeed. With years of experience in HR and
-                        design, we've crafted a user-friendly tool that simplifies the resume-building process.</p>
+                    <p>Our team is passionate about helping you succeed. We've built a simple, user-friendly tool that guides you step-by-step to a strong resume.</p>
                 </div>
             </div>
-                    <br>
-                    <br>
-        </section>
-
+        </div>
+    </section>
 </body>
-
 </html>

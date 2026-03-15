@@ -3,200 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home - Resume Builder</title>
 </head>
 <body>
-    <section>
-       
-            <!-- <h1>This is Home Page</h1> -->
-            <main>
-            
-                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true"
-                            aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <section class="home-page">
+        <main>
+            <!-- Hero -->
+            <header class="home-hero">
+                <div class="home-hero__bg" th:style="'background-image: url(\'' + @{/image/resume1.jpg} + '\')'"></div>
+                <div class="home-hero__overlay"></div>
+                <div class="home-hero__grid"></div>
+                <div class="home-hero__content">
+                    <p class="home-hero__badge">Free to start · No credit card</p>
+                    <h1 class="home-hero__title">Resumes that get you <em>noticed</em></h1>
+                    <p class="home-hero__lead">Build an ATS-friendly resume in minutes. Clean templates, smart structure, and guidance so recruiters see the real you.</p>
+                    <div class="home-hero__actions">
+                        <a class="home-hero__btn home-hero__btn--primary" th:href="@{SingUp}">Create your resume</a>
+                        <a class="home-hero__btn home-hero__btn--secondary" th:href="@{about}">How it works</a>
                     </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img th:src="@{/image/resume1.jpg}" class="d-block w-100" alt="...">
-                            <div class="container">
-                                <div class="carousel-caption text-start" style="color: black;">
-                                    <h1>Resume .</h1>
-                                    <p>Start Your Resume Creation by Registring in our Website.</p>
-                                    <p><a class="btn btn-lg btn-primary" th:href="@{SingUp}">Sign up today</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img th:src="@{/image/resume2.jpg}" class="d-block w-100" alt="...">
-                            <div class="container">
-                                <div class="carousel-caption" style="color: black;">
-                                    <h1>Details about Us</h1>
-                                    <p>Get our Details.</p>
-                                    <p><a class="btn btn-lg btn-primary" th:href="@{about}">Learn more</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img th:src="@{/image/resume3.jpg}" class="d-block w-100" alt="...">
-                            <div class="container">
-                                <div class="carousel-caption text-end" style="color: black;">
-                                    <h1>You can contact-us.</h1>
-                                    <p>To contact us just send message to us by this button.</p>
-                                    <p><a class="btn btn-lg btn-primary" th:href="@{ContactUs}">Contact-Us</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
-            
-            
-                <!-- Marketing messaging and featurettes
-              ================================================== -->
-                <!-- Wrap the rest of the page in another container to center all the content. -->
-            
-                <div class="container marketing">
-            
-                    <!-- Three columns of text below the carousel -->
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                                th:src="@{/image/dev.jpg}"
-                                preserveAspectRatio="xMidYMid slice" focusable="false"> -->
-                                <img th:src="@{/image/dev.jpg}" class="bd-placeholder-img rounded-circle" alt="...">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                                    dy=".3em"></text>
-                                   
-                            </svg>
-            
-                            <h2>Dev Mathyu</h2>
-                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the
-                                first column.</p>
-                            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                        </div><!-- /.col-lg-4 -->
-                        <div class="col-lg-4">
-                            <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                                preserveAspectRatio="xMidYMid slice" focusable="false"> -->
-                                <img th:src="@{/image/steave.jpg}" class="bd-placeholder-img rounded-circle" alt="...">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                                    dy=".3em"></text>
-                            </svg>
-            
-                            <h2>Stan Lee</h2>
-                            <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second
-                                column.</p>
-                            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                        </div><!-- /.col-lg-4 -->
-                        <div class="col-lg-4">
-                            <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                                preserveAspectRatio="xMidYMid slice" focusable="false"> -->
-                                <img th:src="@{/image/ema.jpg}" class="bd-placeholder-img rounded-circle" alt="...">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
-                                    dy=".3em"></text>
-                            </svg>
-            
-                            <h2>Ema Stone</h2>
-                            <p>And lastly this, the third column of representative placeholder content.</p>
-                            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                        </div><!-- /.col-lg-4 -->
-                    </div><!-- /.row -->
-            
-            
-                    <!-- START THE FEATURETTES -->
-            
-                    <hr class="featurette-divider">
-            
-                    <div class="row featurette">
-                        <div class="col-md-7">
-                            <h2 class="featurette-heading">Not use this kind of resume. <span class="text-muted">for profesonal use.</span></h2>
-                            <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting
-                                prose here.</p>
-                        </div>
-                        <div class="col-md-5">
-                            <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                                height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                                preserveAspectRatio="xMidYMid slice" focusable="false"> -->
-                                <img th:src="@{/image/not_use.jpg}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" alt="...">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                                    dy=".3em"></text>
-                            </svg>
-            
-                        </div>
-                    </div>
-            
-                    <hr class="featurette-divider">
-            
-                    <div class="row featurette">
-                        <div class="col-md-7 order-md-2">
-                            <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">Use this kind of ATS friendy resumes.</span></h2>
-                            <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how
-                                this layout would work with some actual real-world content in place.</p>
-                        </div>
-                        <div class="col-md-5 order-md-1">
-                            <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                                height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                                preserveAspectRatio="xMidYMid slice" focusable="false"> -->
-                                <img th:src="@{/image/use.jpg}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" alt="...">
-                                <title>Placeholder</title>
-                                <!-- <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                                    dy=".3em"></text> -->
-                            </svg>
-            
-                        </div>
-                    </div>
-            
-                    <!-- <hr class="featurette-divider">
-            
-                    <div class="row featurette">
-                        <div class="col-md-7">
-                            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                            <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
-                                intended to be actually read, simply here to give you a better view of what this would look like
-                                with some actual content. Your content.</p>
-                        </div>
-                        <div class="col-md-5">
-                            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                                height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                                preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                                    dy=".3em">500x500</text>
-                            </svg>
-            
-                        </div>
-                    </div> -->
-            
-                    <hr class="featurette-divider">
-            
-                    <!-- /END THE FEATURETTES -->
-            
-                </div><!-- /.container -->
-            
-            
-                <!-- FOOTER -->
-                <!-- <footer class="container">
-                    <p class="float-end"><a href="#">Back to top</a></p>
-                    <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-                </footer> -->
-            </main>
+                <div class="home-hero__scroll">
+                    <span class="home-hero__scroll-icon" aria-hidden="true"></span>
+                </div>
+            </header>
 
+            <!-- Features strip -->
+            <section class="home-features" aria-label="Why choose us">
+                <div class="home-features__inner">
+                    <div class="home-feature">
+                        <span class="home-feature__icon" aria-hidden="true"><i class="fas fa-file-alt"></i></span>
+                        <h3 class="home-feature__title">ATS-friendly</h3>
+                        <p class="home-feature__text">Designed to pass applicant tracking systems so your experience gets seen.</p>
+                    </div>
+                    <div class="home-feature">
+                        <span class="home-feature__icon" aria-hidden="true"><i class="fas fa-magic"></i></span>
+                        <h3 class="home-feature__title">Easy builder</h3>
+                        <p class="home-feature__text">Step-by-step flow. No design skills needed—just add your details.</p>
+                    </div>
+                    <div class="home-feature">
+                        <span class="home-feature__icon" aria-hidden="true"><i class="fas fa-download"></i></span>
+                        <h3 class="home-feature__title">Download & go</h3>
+                        <p class="home-feature__text">Export a clean, professional PDF ready to send to employers.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Avoid / Use (ATS) -->
+            <section class="home-ats">
+                <div class="home-ats__inner">
+                    <h2 class="home-ats__heading">Resumes that work</h2>
+                    <p class="home-ats__sub">Fancy layouts often fail in ATS. We focus on what actually gets you interviews.</p>
+
+                    <div class="home-ats__row home-ats__row--avoid">
+                        <div class="home-ats__content">
+                            <span class="home-ats__label">Avoid</span>
+                            <h3 class="home-ats__title">Over-designed resumes</h3>
+                            <p class="home-ats__text">Graphics and complex layouts look nice on screen but break in applicant tracking systems. Many never reach a human.</p>
+                        </div>
+                        <div class="home-ats__media">
+                            <img th:src="@{/image/not_use.jpg}" alt="Resume style to avoid" class="home-ats__img" width="480" height="360">
+                        </div>
+                    </div>
+
+                    <div class="home-ats__row home-ats__row--use">
+                        <div class="home-ats__media">
+                            <img th:src="@{/image/use.jpg}" alt="ATS-friendly resume example" class="home-ats__img" width="480" height="360">
+                        </div>
+                        <div class="home-ats__content">
+                            <span class="home-ats__label home-ats__label--good">Use</span>
+                            <h3 class="home-ats__title">Clean, scannable format</h3>
+                            <p class="home-ats__text">Clear sections and standard structure help both ATS and recruiters. Build one like this with us.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team -->
+            <section class="home-team">
+                <div class="home-team__inner">
+                    <h2 class="home-team__heading">Meet the team</h2>
+                    <p class="home-team__sub">The people behind your next resume.</p>
+                    <div class="home-team__grid">
+                        <article class="home-team__card">
+                            <div class="home-team__img-wrap">
+                                <img th:src="@{/image/dev.jpg}" alt="Dev Mathyu" class="home-team__img" width="140" height="140">
+                            </div>
+                            <h3 class="home-team__name">Dev Mathyu</h3>
+                            <p class="home-team__role">Product & simplicity</p>
+                            <p class="home-team__bio">Making resume creation simple and effective for everyone.</p>
+                        </article>
+                        <article class="home-team__card">
+                            <div class="home-team__img-wrap">
+                                <img th:src="@{/image/steave.jpg}" alt="Stan Lee" class="home-team__img" width="140" height="140">
+                            </div>
+                            <h3 class="home-team__name">Stan Lee</h3>
+                            <p class="home-team__role">Content & storytelling</p>
+                            <p class="home-team__bio">Helping you tell your professional story so it gets noticed.</p>
+                        </article>
+                        <article class="home-team__card">
+                            <div class="home-team__img-wrap">
+                                <img th:src="@{/image/ema.jpg}" alt="Ema Stone" class="home-team__img" width="140" height="140">
+                            </div>
+                            <h3 class="home-team__name">Ema Stone</h3>
+                            <p class="home-team__role">Design & experience</p>
+                            <p class="home-team__bio">Designing flows that make building your resume a breeze.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="home-cta">
+                <div class="home-cta__inner">
+                    <h2 class="home-cta__title">Ready to stand out?</h2>
+                    <p class="home-cta__text">Create your resume in minutes. Free to start.</p>
+                    <div class="home-cta__actions">
+                        <a class="home-cta__btn" th:href="@{SingUp}">Get started free</a>
+                        <a class="home-cta__link" th:href="@{ContactUs}">Contact us</a>
+                    </div>
+                </div>
+            </section>
+        </main>
     </section>
 </body>
 </html>

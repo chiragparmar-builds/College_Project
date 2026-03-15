@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.contactmanager.contact_manager.dao.Contact_Repositery;
 import com.contactmanager.contact_manager.dao.UserRepository;
@@ -111,15 +112,15 @@ public class HomeController {
     }
 
     @PostMapping("/do_message")
-    public String message_from_user(@Valid @ModelAttribute("contact") contact contact, BindingResult bindingResult, Model m) {
+    public String message_from_user(@Valid @ModelAttribute("contact") contact contact, BindingResult bindingResult, Model m, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             System.out.println("Errors are = " + bindingResult);
             m.addAttribute("Title", "Contact-Us - Errors found");
             return "contactus";
         }
         contact_Repositery.save(contact);
-//        m.addAttribute("message_from_user", true);
-        return "redirect:/ContactUs?success=true";
+        redirectAttributes.addFlashAttribute("message_from_user", true);
+        return "redirect:/ContactUs";
     }
 
 }
