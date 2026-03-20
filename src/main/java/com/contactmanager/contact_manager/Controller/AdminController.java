@@ -1,7 +1,9 @@
 package com.contactmanager.contact_manager.Controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -126,5 +128,29 @@ public class AdminController {
         return "admin/user_management";
     }
 
+    @GetMapping("/delete-user")
+    @ResponseBody
+    public String deleteUser(@RequestParam("id") int id) {
 
+        userRepository.deleteById(id);
+
+        return "success";
+    }
+
+    @GetMapping("/get-user")
+    @ResponseBody
+    public Map<String, String> getUser(@RequestParam("id") int id) {
+
+        User user = userRepository.findById(id).orElse(null);
+
+        Map<String, String> data = new HashMap<>();
+
+        if (user != null) {
+            data.put("name", user.getName());
+            data.put("email", user.getEmail());
+            data.put("role", user.getRole());
+        }
+
+        return data;
+    }
 }

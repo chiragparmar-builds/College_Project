@@ -261,3 +261,21 @@ body {
     background: #ef4444;
     color: white;
 }
+.delete-btn {
+    border: 1px solid #ef4444;
+    color: #ef4444;
+}
+.view-btn {
+    background: transparent;
+    border: 1px solid #c19a6b;
+    color: #c19a6b;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-btn:hover {
+    background: #c19a6b;
+    color: black;
+}
