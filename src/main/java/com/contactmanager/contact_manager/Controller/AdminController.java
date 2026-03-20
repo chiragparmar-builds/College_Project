@@ -83,30 +83,23 @@ public class AdminController {
         // m.addAttribute("contact", con);
         return "admin/messages";
     }
-    
 
-     @RequestMapping("/see-message")
-     public String requestMethodName(@RequestParam("m_id") int messageId,@ModelAttribute("contact") List<contact> cont,Model m) {
-        // System.out.println(messageId);
-        String message = null;
 
-        String v = contact_Repositery.getMessageByCid(messageId);
-        System.out.println(v);
-        
-        // for (contact c1 : cont) {
-        //     if (messageId == c1.getCid()) {
-        //         message = c1.getMessage();
-        //         break;
-        //     }
-        // }
+    @RequestMapping("/see-message")
+    public String seeMessage(@RequestParam("m_id") int messageId, Model m) {
 
-        message = cont.stream().filter(cont1 -> cont1.getCid() == messageId)
-                                .map(contact::getMessage).findFirst().orElse(null);
+        // Get message directly from DB
+        String message = contact_Repositery.getMessageByCid(messageId);
 
-        // m.addAttribute("message", v);
+        // Send to frontend
         m.addAttribute("message", message);
-         return "admin/messages";
-     }
+
+        // ALSO send full list again (IMPORTANT)
+        List<contact> contactList = contact_Repositery.findAll();
+        m.addAttribute("contact", contactList);
+
+        return "admin/messages";
+    }
 
 
         // @PostMapping("/make-user-dead")
