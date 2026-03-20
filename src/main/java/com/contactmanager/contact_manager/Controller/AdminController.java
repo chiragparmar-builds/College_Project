@@ -6,11 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.contactmanager.contact_manager.dao.Contact_Repositery;
 import com.contactmanager.contact_manager.dao.UserRepository;
@@ -18,10 +14,6 @@ import com.contactmanager.contact_manager.entities.User;
 import com.contactmanager.contact_manager.entities.contact;
 
 import jakarta.servlet.http.HttpServletResponse;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 
 @Controller
@@ -35,10 +27,10 @@ public class AdminController {
     Contact_Repositery contact_Repositery;
 
     @ModelAttribute
-    public void addCommonData(Model m, Principal principal){
+    public void addCommonData(Model m, Principal principal) {
         String username = principal.getName();
         User admin = userRepository.getUserByUserName(username);
-        List<User>users = userRepository.getAllActiveUsers();
+        List<User> users = userRepository.getAllActiveUsers();
         this.userRepository.save(admin);
         // this.userRepository.save(users);
         m.addAttribute("admin", admin);
@@ -46,7 +38,7 @@ public class AdminController {
     }
 
     @ModelAttribute
-    public void getCommondataForMessage(Model m){
+    public void getCommondataForMessage(Model m) {
         List<contact> con = contact_Repositery.findAll();
         m.addAttribute("contact", con);
     }
@@ -84,6 +76,22 @@ public class AdminController {
         return "admin/messages";
     }
 
+    @GetMapping("/get-message")
+    @ResponseBody
+    public String getMessage(@RequestParam("id") int messageId) {
+
+        return contact_Repositery.getMessageByCid(messageId);
+    }
+
+
+    @GetMapping("/delete-message")
+    @ResponseBody
+    public String deleteMessage(@RequestParam("id") int id) {
+
+        contact_Repositery.deleteById(id);
+
+        return "success";
+    }
 
     @RequestMapping("/see-message")
     public String seeMessage(@RequestParam("m_id") int messageId, Model m) {
@@ -102,22 +110,21 @@ public class AdminController {
     }
 
 
-        // @PostMapping("/make-user-dead")
+    // @PostMapping("/make-user-dead")
 
-        @RequestMapping("/make-user-dead")
-        public String postMethodName(@RequestParam("a_id") int userId, Model model) {
-            try {
+    @RequestMapping("/make-user-dead")
+    public String postMethodName(@RequestParam("a_id") int userId, Model model) {
+        try {
             int updatedRows = this.userRepository.updateUserById(userId);
 
             if (updatedRows != 0) {
                 model.addAttribute("User_Deleted", true);
-            } 
-        }catch (Exception e){
+            }
+        } catch (Exception e) {
             return "admin/user_management";
         }
-            return "admin/user_management";
-        }
-     
-    
-    
+        return "admin/user_management";
+    }
+
+
 }

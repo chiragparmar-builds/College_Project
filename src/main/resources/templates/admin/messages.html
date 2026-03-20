@@ -31,13 +31,23 @@
                 <td th:text="${c.email}">john@gmail.com</td>
                 <td th:text="${c.phone}">9999999999</td>
 
+
                 <td>
-                    <form th:action="@{/admin/see-message}" method="post">
-                        <input type="hidden" th:value="${c.cid}" name="m_id">
-                        <button type="submit" class="view-btn">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </form>
+                    <!-- VIEW -->
+                    <button type="button"
+                            class="view-btn"
+                            th:attr="data-id=${c.cid}"
+                            onclick="showMessage(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+
+                    <!-- DELETE -->
+                    <button type="button"
+                            class="delete-btn"
+                            th:attr="data-id=${c.cid}"
+                            onclick="deleteMessage(this)">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </td>
             </tr>
 
@@ -46,15 +56,86 @@
         </table>
 
     </div>
-    <script th:if="${message}">
-        Swal.fire({
-            title: "Message",
-            text: "[[${message}]]",
-            confirmButtonColor: "#c19a6b",
-            allowOutsideClick: false
-        }).then(() => {
-            window.location.href = "/admin/show-messages";
-        });
+<!--    <script th:if="${message}">-->
+<!--        Swal.fire({-->
+<!--            title: "Message",-->
+<!--            text: "[[${message}]]",-->
+<!--            confirmButtonColor: "#c19a6b",-->
+<!--            allowOutsideClick: false-->
+<!--        }).then(() => {-->
+<!--            window.location.href = "/admin/show-messages";-->
+<!--        });-->
+<!--    </script>-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        function showMessage(btn) {
+
+            let id = btn.getAttribute("data-id");
+
+            fetch("/admin/get-message?id=" + id)
+                .then(response => response.text())
+                .then(data => {
+
+                    Swal.fire({
+                        title: "📩 Message",
+                        html: `<p style="font-size:14px">${data}</p>`,
+                        confirmButtonText: "Close",
+                        confirmButtonColor: "#c19a6b",
+                        background: "#1e293b",
+                        color: "#fff",
+                        width: "500px"
+                    });
+
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+
+        function deleteMessage(btn) {
+
+    let id = btn.getAttribute("data-id");
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This message will be deleted permanently!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#c19a6b",
+        cancelButtonColor: "#ef4444",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            fetch("/admin/delete-message?id=" + id)
+                .then(response => response.text())
+                .then(data => {
+
+                    if (data === "success") {
+
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Message has been removed.",
+                            icon: "success",
+                            confirmButtonColor: "#c19a6b"
+                        });
+
+                        // REMOVE ROW WITHOUT RELOAD
+                        let row = btn.closest("tr");
+                        row.remove();
+                    }
+
+                });
+
+        }
+
+    });
+
+}
     </script>
 </section>
 
