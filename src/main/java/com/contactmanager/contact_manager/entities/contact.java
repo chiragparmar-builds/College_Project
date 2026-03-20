@@ -1,11 +1,6 @@
 package com.contactmanager.contact_manager.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,6 +17,8 @@ public class contact {
     @Size(min = 3, max = 40, message = "Name must be between 3 and 40 characters")
     private String name;
 
+    @Column(name = "is_read")
+    private boolean isRead = false;
 
     // private String secondName;
     // private String work;
@@ -100,5 +97,11 @@ public class contact {
         this.user = user;
     }
 
-    
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean isRead) {
+        this.isRead = isRead;
+    }
 }

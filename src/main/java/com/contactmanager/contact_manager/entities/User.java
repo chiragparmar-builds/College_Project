@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.contactmanager.contact_manager.entities.Resume_info.Resume;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -50,6 +51,7 @@ public class User {
     private List<contact> contacts = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "last_login_user")
+    @JsonIgnore
     private List<LastLogin> dd = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "resume")

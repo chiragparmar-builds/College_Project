@@ -2,6 +2,7 @@ package com.contactmanager.contact_manager.entities;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ public class LastLogin {
 
     @ManyToOne
     @JoinColumn(name = "last_login_user")
+    @JsonIgnore
     private User last_login_user;
 
 

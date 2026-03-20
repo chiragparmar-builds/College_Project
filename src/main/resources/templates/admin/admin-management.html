@@ -6,15 +6,13 @@
 <body>
 <section>
 
+    <!-- HEADER -->
     <div class="page-header">
-        <h1>👥 User Management</h1>
-        <input type="text" id="searchInput" placeholder="Search users...">
-    </div>
+        <h1>🛡️ Admin Management</h1>
 
-    <!-- STATS -->
-    <div class="stats-card">
-        <p>Total Users</p>
-        <h2 th:text="${Total_Users}">0</h2>
+        <div style="display:flex; gap:10px;">
+            <input type="text" id="searchInput" placeholder="Search users...">
+        </div>
     </div>
 
     <!-- TABLE -->
@@ -27,22 +25,22 @@
                 <th>User</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Actions</th>
+                <th>Is Alive</th>
+                <th>Action</th>
             </tr>
             </thead>
 
-            <tbody id="userTableBody">
-            <!-- JS LOAD -->
+            <tbody id="adminTableBody">
+            <tr><td colspan="5">Loading...</td></tr>
             </tbody>
         </table>
 
-        <!-- PAGINATION -->
         <div id="pagination" class="pagination"></div>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/admin/user.js"></script>
+    <script src="/js/admin/admin-management.js"></script>
 
 </section>
 </body>

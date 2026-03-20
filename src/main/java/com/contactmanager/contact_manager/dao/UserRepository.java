@@ -11,6 +11,8 @@ import org.springframework.data.repository.query.Param;
 import com.contactmanager.contact_manager.entities.User;
 
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface UserRepository extends JpaRepository<User,Integer> {
 
@@ -30,11 +32,17 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     // @Query("SELECT u FROM User u WHERE u.is_alive = 1")
     // List<User> getAllActiveUsers();
 
-    @Query("SELECT u FROM User u WHERE u.Is_Alive = 1 AND u.role = 'ROLE_USER'")
+//    @Query("SELECT u FROM User u WHERE u.Is_Alive = 1 AND u.role = 'ROLE_USER'")
+//    List<User> getAllActiveUsers();
+
+    @Query("SELECT u FROM User u WHERE u.Is_Alive = 1")
     List<User> getAllActiveUsers();
 
     @Modifying
     @Transactional
     @Query("UPDATE User u SET u.Is_Alive = 0 WHERE id = :id")
     int updateUserById(@Param("id") int id);
+
+
+    Page<User> findByNameContainingIgnoreCase(String keyword, Pageable pageable);
 }
